@@ -1,6 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const qrcodeAuth = require("./qrcodeAuth");  // Optional import QR code logic
 
 const app = express();
 // Parse incoming JSON payloads in requests
@@ -119,6 +120,11 @@ app.post("/logout", (req, res) => {
 app.get("/protected", authenticateToken, (req, res) => {
   res.json({ message: "This is protected data", user: req.user });
 });
+
+// QR Code related routes
+app.get("/qrcode", qrcodeAuth.generateQRCode);
+app.get("/qrcode/status/:token", qrcodeAuth.checkQRCodeStatus);
+app.post("/qrcode/login", authenticateToken, qrcodeAuth.authenticateQRCode);
 
 app.listen(3000, () => {
   console.log("Server running on port 3000");
