@@ -1,8 +1,8 @@
 # Super Simple Authentication
 This code creates an Express app for user authentication with JWTs. It supports registration, login, token refresh, and logout, using bcrypt for password hashing and storing users in-memory. Access tokens are refreshed with valid refresh tokens, and protected routes require authentication.
 
-TODO: Auth by third party provider
-
+> A key strength of JWTs is that they are digitally signed. This ensures the token's integrity, meaning its contents cannot be tampered with after issuance. While the token's payload is base64-encoded (not encrypted) and readable by anyone who possesses it, the signature can only be validated by parties with access to the appropriate verification key.
+ 
 ## Usage
 
 ```sh
